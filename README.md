@@ -14,8 +14,23 @@
 
 ## Text Preprocessing
 * tokenization
+* remove punctuation
+* remove words that are not purely alphabetic words
+```
+def remove_non_alphabetic_characters(text):
+    tokens = tokenize_text(text)
+    tokens = [w for w in tokens if w.isalpha()]
+    return ' '.join(tokens)
+```
 * remove stopwords
 * remove special characters
+* remove all words that have a length <= 1 characters (this number can be changed)
+```
+def remove_tokens_with_frequency(text,count):
+    tokens = tokenize_text(text)
+    tokens = [w for w in tokens if len(w)>count]
+    return ' '.join(tokens)
+```
 * stemming and lemmatization
 
 ## Imbalance Data Handling
@@ -39,6 +54,7 @@
 | tfidf + random forest | |
 | bow + BalancedBaggingClassifier | |
 | tfidf + BalancedBaggingClassifier | |
+| glove + CNN | |
 | word2vec + lstm | |
 | word2vec + BiLSTM + encoding | |
 
@@ -53,6 +69,7 @@
 | tfidf + random forest | |
 | bow + BalancedBaggingClassifier | |
 | tfidf + BalancedBaggingClassifier | |
+| glove + CNN | |
 | word2vec + lstm | |
 | word2vec + BiLSTM + encoding | |
 
