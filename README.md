@@ -14,7 +14,21 @@
 
 ## Text Preprocessing
 * tokenization
+```
+def tokenize_text(text):
+    tokens = word_tokenize(text.lower())
+    tokens = [token.strip() for token in tokens]
+    return tokens
+```
 * remove punctuation
+```
+def remove_special_characters(text):
+    tokens = tokenize_text(text)
+    pattern = re.compile('[{}]'.format(re.escape(string.punctuation)))
+    filtered_tokens = filter(None, [pattern.sub('', token) for token in tokens])
+    filtered_text = ' '.join(filtered_tokens)
+    return filtered_text
+```
 * remove words that are not purely alphabetic words
 ```
 def remove_non_alphabetic_characters(text):
@@ -23,7 +37,14 @@ def remove_non_alphabetic_characters(text):
     return ' '.join(tokens)
 ```
 * remove stopwords
-* remove special characters
+```
+def remove_stopwords(text):
+    stop = list(set(stopwords.words('english')))
+    tokens = tokenize_text(text)
+    filtered_tokens = [token for token in tokens if token not in stop]
+    filtered_text = ' '.join(filtered_tokens)
+    return filtered_text
+```
 * remove all words that have a length <= 1 characters (this number can be changed)
 ```
 def remove_tokens_with_frequency(text,count):
